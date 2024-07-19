@@ -27,15 +27,6 @@ namespace ExtraShopPhoneNumbers.ExtraShopPhoneNumbers
     /// <summary>A custom phone handler.</summary>
     internal sealed class ESPNPhoneHandler : IPhoneHandler
     {
-        public static class OutgoingCallIds
-        {
-            /// <summary>An outgoing call to the Travelling Cart.</summary>
-            public const string Traveler = "Travelling Cart";
-            /// <summary>An outgoing call to Krobus.</summary>
-            public const string Krobus = "Krobus";
-            /// <summary>An outgoing call to Sandy.</summary>
-            public const string Sandy = "The Oasis";
-        }
 
         public IEnumerable<KeyValuePair<string, string>> GetOutgoingNumbers()
         {
@@ -43,9 +34,12 @@ namespace ExtraShopPhoneNumbers.ExtraShopPhoneNumbers
             { };
             if (true/*Game1.player.mailReceived.Contains("ESPN_Annuary")*/)
             {
-                numbers.Add(new KeyValuePair<string, string>("Traveler", OutgoingCallIds.Traveler));
-                numbers.Add(new KeyValuePair<string, string>("Krobus", OutgoingCallIds.Krobus));
-                numbers.Add(new KeyValuePair<string, string>("Sandy", OutgoingCallIds.Sandy));
+                /// <summary>An outgoing call to the Traveling Cart.</summary>
+                numbers.Add(new KeyValuePair<string, string>("Traveler", Game1.content.LoadString("Strings\\Characters:ESPN.TravelingCart")));
+                /// <summary>An outgoing call to Krobus.</summary>
+                numbers.Add(new KeyValuePair<string, string>("Krobus", Game1.content.LoadString("Strings\\Characters:ESPN.Krobus")));
+                /// <summary>An outgoing call to Sandy.</summary>
+                numbers.Add(new KeyValuePair<string, string>("Sandy", Game1.content.LoadString("Strings\\Characters:ESPN.SandysOasis")));
             }
             return numbers;
         }
@@ -68,7 +62,7 @@ namespace ExtraShopPhoneNumbers.ExtraShopPhoneNumbers
             }
         }
 
-        /// <summary> Handle a call to the Travelling Cart</summary>
+        /// <summary> Handle a call to the Traveling Cart</summary>
         public void CallTraveler()
         {
             GameLocation location = Game1.currentLocation;
@@ -77,14 +71,14 @@ namespace ExtraShopPhoneNumbers.ExtraShopPhoneNumbers
             DelayedAction.functionAfterDelay(delegate
             {
                 Game1.playSound("bigSelect");
-                NPC characterFromName = new NPC(new AnimatedSprite("Characters\\Abigail", 0, 16, 16), Vector2.Zero, "", 0, "Merchant", Game1.temporaryContent.Load<Texture2D>("Portraits\\AnsweringMachine"), eventActor: false);
+                NPC characterFromName = new NPC(new AnimatedSprite("Characters\\Abigail", 0, 16, 16), Vector2.Zero, "", 0, Game1.content.LoadString("Strings\\Characters:ESPN.TravelingCartMerchantName"), Game1.temporaryContent.Load<Texture2D>("Portraits\\AnsweringMachine"), eventActor: false);
                 if (Game1.dayOfMonth is 8 && Game1.season is Season.Winter) //Festival of Ice?
                 {
-                    Game1.DrawAnsweringMachineDialogue(characterFromName, "Strings\\Characters:Phone_Traveler_FoI");
+                    Game1.DrawAnsweringMachineDialogue(characterFromName, "Strings\\Characters:ESPN.Phone_Traveler_FoI");
                 }
                 if (Game1.dayOfMonth is 15 or 16 or 17 && Game1.season is Season.Winter) //Night Market?
                 {
-                    Game1.DrawAnsweringMachineDialogue(characterFromName, "Strings\\Characters:Phone_Traveler_NM");
+                    Game1.DrawAnsweringMachineDialogue(characterFromName, "Strings\\Characters:ESPN.Phone_Traveler_NM");
                     Game1.afterDialogues = (Game1.afterFadeFunction)Delegate.Combine(Game1.afterDialogues, (Game1.afterFadeFunction)delegate
                     {
                         List<Response> list = new List<Response>
@@ -114,7 +108,7 @@ namespace ExtraShopPhoneNumbers.ExtraShopPhoneNumbers
                 }
                 if (Game1.dayOfMonth is 15 or 16 or 17 && Game1.season is Season.Spring) //Desert Festival?
                 {
-                    Game1.DrawAnsweringMachineDialogue(characterFromName, "Strings\\Characters:Phone_Traveler_DF");
+                    Game1.DrawAnsweringMachineDialogue(characterFromName, "Strings\\Characters:ESPN.Phone_Traveler_DF");
                     Game1.afterDialogues = (Game1.afterFadeFunction)Delegate.Combine(Game1.afterDialogues, (Game1.afterFadeFunction)delegate
                     {
                         List<Response> list = new List<Response>
@@ -142,13 +136,14 @@ namespace ExtraShopPhoneNumbers.ExtraShopPhoneNumbers
                         }
                     });
                 }
-                else if (!(Game1.dayOfMonth % 7 % 5 == 0)) //Not a Travelling Cart day
+                else if (!(Game1.dayOfMonth % 7 % 5 == 0)) //Not a Traveling Cart day
                 {
-                    Game1.DrawAnsweringMachineDialogue(characterFromName, "Strings\\Characters:Phone_Traveler_wrong_day");
+                    //Game1.DrawAnsweringMachineDialogue(characterFromName, "Strings\\Characters:ESPN.Phone_Traveler_wrong_day");
+                    Game1.DrawDialogue(new Dialogue(characterFromName, "Strings\\Characters:ESPN.Phone_Traveler_wrong_day"));
                 }
-                else if (Game1.dayOfMonth % 7 % 5 == 0 && Game1.timeOfDay < 2000)  //Travelling Cart in town
+                else if (Game1.dayOfMonth % 7 % 5 == 0 && Game1.timeOfDay < 2000)  //Traveling Cart in town
                 {
-                    Game1.DrawAnsweringMachineDialogue(characterFromName, "Strings\\Characters:Phone_Traveler");
+                    Game1.DrawAnsweringMachineDialogue(characterFromName, "Strings\\Characters:ESPN.Phone_Traveler");
                     Game1.afterDialogues = (Game1.afterFadeFunction)Delegate.Combine(Game1.afterDialogues, (Game1.afterFadeFunction)delegate
                     {
                         List<Response> list = new List<Response>
@@ -176,9 +171,9 @@ namespace ExtraShopPhoneNumbers.ExtraShopPhoneNumbers
                         }
                     });
                 }
-                else if (Game1.dayOfMonth % 7 % 5 == 0 && Game1.timeOfDay > 2000) //Travelling Cart day but past 8pm
+                else if (Game1.dayOfMonth % 7 % 5 == 0 && Game1.timeOfDay > 2000) //Traveling Cart day but past 8pm
                 {
-                    Game1.DrawAnsweringMachineDialogue(characterFromName, "Strings\\Characters:Phone_Traveler_too_late");
+                    Game1.DrawAnsweringMachineDialogue(characterFromName, "Strings\\Characters:ESPN.Phone_Traveler_too_late");
                 }
 
             }, 4950);
@@ -193,17 +188,18 @@ namespace ExtraShopPhoneNumbers.ExtraShopPhoneNumbers
             {
                 Game1.playSound("bigSelect");
                 NPC characterFromName = Game1.getCharacterFromName("Krobus");
-                if (Game1.dayOfMonth % 5 == 0) //Friday?
+                if (Game1.dayOfMonth == 5 || Game1.dayOfMonth == 12 || Game1.dayOfMonth == 19 || Game1.dayOfMonth == 26 ) //Friday?
                 {
-                    Game1.DrawAnsweringMachineDialogue(characterFromName, "Strings\\Characters:Phone_Krobus_Friday");
+                    NPC Krobusrobocall = new NPC(new AnimatedSprite("Characters\\Abigail", 0, 16, 16), Vector2.Zero, "", 0, Game1.content.LoadString("Strings\\Characters:ESPN.Krobus_Friday"), Game1.temporaryContent.Load<Texture2D>("Portraits\\AnsweringMachine"), eventActor: false);
+                    Game1.DrawAnsweringMachineDialogue(Krobusrobocall, "Strings\\Characters:ESPN.Phone_Krobus_Friday");
                 }
                 else if (GameStateQuery.CheckConditions("PLAYER_NPC_RELATIONSHIP Any Krobus Roommate")) //Krobus is roommate?
                 {
-                    Game1.DrawDialogue(characterFromName, "Strings\\Characters:Phone_Krobus_onFarm");
+                    Game1.DrawDialogue(characterFromName, "Strings\\Characters:ESPN.Phone_Krobus_onFarm");
                 }
                 else
                 {
-                    Game1.DrawDialogue(characterFromName, "Strings\\Characters:Phone_Krobus");
+                    Game1.DrawDialogue(characterFromName, "Strings\\Characters:ESPN.Phone_Krobus");
                 }
                 Game1.afterDialogues = (Game1.afterFadeFunction)Delegate.Combine(Game1.afterDialogues, (Game1.afterFadeFunction)delegate
                 {
@@ -228,32 +224,29 @@ namespace ExtraShopPhoneNumbers.ExtraShopPhoneNumbers
 
                     }
                 });
-            }, 4950); 
+            }, 4950);
         }
 
         public void CallSandy()
         {
             GameLocation location = Game1.currentLocation;
-            location.playShopPhoneNumberSounds("TheOasis");
+            location.playShopPhoneNumberSounds("SandysOasis");
             Game1.player.freezePause = 4950;
             DelayedAction.functionAfterDelay(delegate
             {
                 Game1.playSound("bigSelect");
                 NPC characterFromName = Game1.getCharacterFromName("Sandy");
-                if ((Game1.dayOfMonth is 15 or 16 or 17) && Game1.season == Season.Spring) //Desert Festival?
+                if (Game1.dayOfMonth is 15 or 16 or 17 && Game1.season == Season.Spring) //Desert Festival? Can't check shop.
                 {
-                    Game1.DrawAnsweringMachineDialogue(characterFromName, "Strings\\Characters:Phone_Sandy_DF");
+                    Game1.DrawAnsweringMachineDialogue(characterFromName, "Strings\\Characters:ESPN.Phone_Sandy_DF");
                 }
-                if (Game1.timeOfDay > 2350) //too late?
+                if (Game1.timeOfDay > 2350) //too late? Can't check shop.
                 {
-                    Game1.DrawAnsweringMachineDialogue(characterFromName, "Strings\\Characters:Phone_Sandy_toolate");
-                }if (Game1.timeOfDay < 900) //too early?
-                {
-                    Game1.DrawAnsweringMachineDialogue(characterFromName, "Strings\\Characters:Phone_Sandy_tooearly");
+                    Game1.DrawAnsweringMachineDialogue(characterFromName, "Strings\\Characters:ESPN.Phone_Sandy_toolate");
                 }
-                else
+                if (Game1.timeOfDay < 900) //too early? Can still check shop.
                 {
-                    Game1.DrawDialogue(characterFromName, "Strings\\Characters:Phone_Sandy");
+                    Game1.DrawAnsweringMachineDialogue(characterFromName, "Strings\\Characters:ESPN.Phone_Sandy_tooearly");
                     Game1.afterDialogues = (Game1.afterFadeFunction)Delegate.Combine(Game1.afterDialogues, (Game1.afterFadeFunction)delegate
                     {
                         List<Response> list = new List<Response>
@@ -277,7 +270,33 @@ namespace ExtraShopPhoneNumbers.ExtraShopPhoneNumbers
                         }
                     });
                 }
-                
+                else //Can check shop.
+                {
+                    Game1.DrawDialogue(characterFromName, "Strings\\Characters:ESPN.Phone_Sandy");
+                    Game1.afterDialogues = (Game1.afterFadeFunction)Delegate.Combine(Game1.afterDialogues, (Game1.afterFadeFunction)delegate
+                    {
+                        List<Response> list = new List<Response>
+                        {
+                            new Response("Sandy_ShopStock", Game1.content.LoadString("Strings\\Characters:Phone_CheckSeedStock")),
+                            new Response("HangUp", Game1.content.LoadString("Strings\\Characters:Phone_HangUp"))
+                        };
+                        location.createQuestionDialogue(Game1.content.LoadString("Strings\\Characters:Phone_SelectOption"), list.ToArray(), handleAnswer);
+
+                        void handleAnswer(Farmer who, string whichAnswer)
+                        {
+                            if (whichAnswer == "Sandy_ShopStock")
+                            {
+                                if (Utility.TryOpenShopMenu("Sandy", null, playOpenSound: true) && Game1.activeClickableMenu is ShopMenu menu)
+                                {
+                                    menu.readOnly = true;
+                                    Phone.HangUp();
+                                }
+                            }
+
+                        }
+                    });
+                }
+
             }, 4950);
         }
         public string? CheckForIncomingCall(Random random)

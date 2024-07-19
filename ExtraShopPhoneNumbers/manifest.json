@@ -1,12 +1,12 @@
 {
   "Name": "Extra Shop Phone Numbers",
   "Author": "PrincessFelicie",
-  "Version": "1.0.0",
+  "Version": "0.1.1",
   "Description": "Adds phone entries to check the travelling merchant, Sandy, and Krobus's shops from home!",
   "UniqueID": "PrincessFelicie.ExtraShopPhoneNumbersCore",
   "EntryDll": "ExtraShopPhoneNumbers.dll",
   "MinimumApiVersion": "4.0.0",
-  "UpdateKeys": [],
+  "UpdateKeys": ["Nexus:25530"],
   "Dependencies": [
 		{ "UniqueID": "Pathoschild.ContentPatcher", "IsRequired": true }
 	]

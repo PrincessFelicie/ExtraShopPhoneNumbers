@@ -1,10 +1,10 @@
 {
-  "Name": "[CP] Extra Shop Phone Numbers",
+  "Name": "Extra Shop Phone Numbers",
   "Author": "PrincessFelicie",
-  "Version": "1.0.0",
+  "Version": "0.1.1",
   "Description": "Adds phone entries to check the travelling merchant, Sandy, and Krobus's shops from home!",
-  "UniqueID": "PrincessFelicie.ExtraShopPhoneNumbers",
-  "UpdateKeys": [],
+  "UniqueID": "PrincessFelicie.ExtraShopPhoneNumbersCP",
+  "UpdateKeys": ["Nexus:25530"],
   "ContentPackFor": {
         "UniqueID": "Pathoschild.ContentPatcher"
     },

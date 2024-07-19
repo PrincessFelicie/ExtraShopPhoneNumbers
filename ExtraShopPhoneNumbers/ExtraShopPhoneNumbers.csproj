@@ -4,15 +4,36 @@
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <GameModsPath>C:\Program Files (x86)\Steam\steamapps\common\Stardew Valley\Mods\ExtraShopPhoneNumbers\</GameModsPath>
+    <ModFolderName>[C#]ExtraShopPhoneNumbers</ModFolderName>
   </PropertyGroup>
+
+
+  <ItemGroup>
+    <None Remove="[CP]ExtraShopPhoneNumbers\content.json;[CP]ExtraShopPhoneNumbers\manifest.json;[CP]ExtraShopPhoneNumbers\i18n\default.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="[CP]ExtraShopPhoneNumbers\content.json;[CP]ExtraShopPhoneNumbers\manifest.json"></Content>
+  </ItemGroup>
+  <ItemGroup>
+    <i18n Include="[CP]ExtraShopPhoneNumbers\i18n\default.json"></i18n>
+  </ItemGroup>
+  
+  
+  <Target Name="CopyCPPart" AfterTargets="AfterBuild">
+    <Copy SourceFiles="@(Content)" DestinationFolder="C:\Program Files (x86)\Steam\steamapps\common\Stardew Valley\Mods\ExtraShopPhoneNumbers\[CP]ExtraShopPhoneNumbers" />
+    <Copy SourceFiles="@(i18n)" DestinationFolder="C:\Program Files (x86)\Steam\steamapps\common\Stardew Valley\Mods\ExtraShopPhoneNumbers\[CP]ExtraShopPhoneNumbers\i18n" />
+    <Message Text="Copying CP mod in the right place..." Importance="high" />
+  </Target>
+
 
   <ItemGroup>
     <PackageReference Include="Pathoschild.Stardew.ModBuildConfig" Version="4.1.1" />
   </ItemGroup>
 
+
   <ItemGroup>
-    <Folder Include="[CP] ExtraShopPhoneNumbers\" />
-    <Folder Include="ExtraShopPhoneNumbers\" />
+    <Folder Include="[CP]ExtraShopPhoneNumbers\i18n\" />
   </ItemGroup>
 
 </Project>

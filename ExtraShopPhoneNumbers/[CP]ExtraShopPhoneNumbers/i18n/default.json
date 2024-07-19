@@ -1,0 +1,32 @@
+{
+    //CONFIG
+    "config.Mode.name": "Mode",
+    "config.Mode.description": "Open: All phone numbers can be called at all times.\nTalk To Unlock: Travelling cart is always available. Krobus and Sandy become available after meeting them.\nPhonebook: All three phone numbers become available after reading the Expanded Phonebook, available from\nthe traveling merchant after meeting Krobus and Sandy, or from the bookseller in Y3+.",
+    "config.Mode.values.Open": "Open",
+    "config.Mode.values.TalktoUnlock": "Talk to Unlock",
+    "config.Mode.values.Phonebook": "Phonebook",
+
+    //Phone names
+    "ESPN.TravelingCart": "Traveling Cart",
+    "ESPN.TravelingCartMerchantName": "Merchant",
+    "ESPN.Krobus": "Krobus",
+    "ESPN.Krobus_Friday": "Krobus's phone?",
+    "ESPN.SandysOasis": "Sandy's Oasis",
+
+    //Phone lines
+    "ESPN.Phone_Traveler_FoI": "Hey there! Today is the festival of ice. For this special occasion my stock is always the same, just come down and see me!",
+    "ESPN.Phone_Traveler_NM": "Interested in Gotoro Empire goods? I'll be open starting at 5pm for the Night Market in Pelican town. You can't miss us, we're set up by the docks!",
+    "ESPN.Phone_Traveler_DF": "Ah, it's you! I've set up my booth in the Desert for the entire duration of the festival. Come see my wares!",
+    "ESPN.Phone_Traveler_wrong_day": "%You hear a pig grunting at you on the other end of the line, sounding particularly irate.",
+    "ESPN.Phone_Traveler": "If it isn't my favorite customer! You know where to find me, I'll be there until 8pm!",
+    "ESPN.Phone_Traveler_too_late": "Oh, I'm sorry! I just closed. I hope to see you next time!",
+    "ESPN.Phone_Krobus": "Hello? I have \"lifted up\" the phone receptor. Here's what I have today.",
+    "ESPN.Phone_Krobus_onFarm": "H... Hello? My... shop? I left a chest down there... you know how the honor system works, right?",
+    "ESPN.Phone_Krobus_Friday": "I'M — SORRY. THE – NUMBER - YOU - HAVE - REACHED - IS - NO - LONGER - IN - SERVICE. JOJA - PHONE - SERVICES - THANK - YOU - FOR - YOUR - PATroooo...",
+    "ESPN.Phone_Sandy": "Hi! Oh, is this the farmer from Pelican Town? Feel free to come by, sweetie, I am so bored at work!",
+    "ESPN.Phone_Sandy_DF": "Hello, you have reached Sandy's Oasis! Unfortunately, we are closed because of the Desert Festival, but don't hesitate to come and join in the festivities!",
+    "ESPN.Phone_Sandy_toolate": "Hi, this is Sandy's Oasis, your respite amidst the heat! Unfortunately, we have already closed for the day, but we're open every day from 9am to 11:50pm!",
+    "ESPN.Phone_Sandy_tooearly": "Hi, this is Sandy's Oasis, your respite amidst the heat! We'll be open soon, come see us from 9am to 11:50pm!"
+
+
+}

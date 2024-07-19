@@ -1,0 +1,42 @@
+{
+    "Format": "2.0.2",
+
+    "ConfigSchema": {
+        "Mode": {
+            "AllowValues": "Open, TalktoUnlock, Phonebook",
+            "AllowBlank": "false",
+            "Default": "Open",
+            "Description": "If you see this, the i18n is missing"
+        }
+    },
+
+    "Changes": [
+      {
+        "Action": "EditData",
+        "Target": "Strings/Characters",
+
+        "Entries": {
+
+            "ESPN.TravelingCart": "{{i18n:ESPN.TravelingCart}}",
+            "ESPN.TravelingCartMerchantName": "{{i18n:ESPN.TravelingCartMerchantName}}",
+            "ESPN.Krobus": "{{i18n:ESPN.Krobus}}",
+            "ESPN.Krobus_Friday": "{{i18n:ESPN.Krobus_Friday}}",
+            "ESPN.SandysOasis": "{{i18n:ESPN.SandysOasis}}",
+            "ESPN.Phone_Traveler_FoI": "{{i18n:ESPN.Phone_Traveler_FoI}}",
+            "ESPN.Phone_Traveler_NM": "{{i18n:ESPN.Phone_Traveler_NM}}",
+            "ESPN.Phone_Traveler_DF": "{{i18n:ESPN.Phone_Traveler_DF}}",
+            "ESPN.Phone_Traveler_wrong_day": "{{i18n:ESPN.Phone_Traveler_wrong_day}}",
+            "ESPN.Phone_Traveler": "{{i18n:ESPN.Phone_Traveler}}",
+            "ESPN.Phone_Traveler_too_late": "{{i18n:ESPN.Phone_Traveler_too_late}}",
+            "ESPN.Phone_Krobus": "{{i18n:ESPN.Phone_Krobus}}",
+            "ESPN.Phone_Krobus_onFarm": "{{i18n:ESPN.Phone_Krobus_onFarm}}",
+            "ESPN.Phone_Krobus_Friday": "{{i18n:ESPN.Phone_Krobus_Friday}}",
+            "ESPN.Phone_Sandy": "{{i18n:ESPN.Phone_Sandy}}",
+            "ESPN.Phone_Sandy_DF": "{{i18n:ESPN.Phone_Sandy_DF}}",
+            "ESPN.Phone_Sandy_toolate": "{{i18n:ESPN.Phone_Sandy_toolate}}",
+            "ESPN.Phone_Sandy_tooearly": "{{i18n:ESPN.Phone_Sandy_tooearly}}"
+
+        }
+      }
+    ]
+}
