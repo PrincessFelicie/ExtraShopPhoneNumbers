@@ -76,7 +76,7 @@ namespace ExtraShopPhoneNumbers.ExtraShopPhoneNumbers
                 {
                     Game1.DrawAnsweringMachineDialogue(characterFromName, "Strings\\Characters:ESPN.Phone_Traveler_FoI");
                 }
-                if (Game1.dayOfMonth is 15 or 16 or 17 && Game1.season is Season.Winter) //Night Market?
+                else if (Game1.dayOfMonth is 15 or 16 or 17 && Game1.season is Season.Winter) //Night Market?
                 {
                     Game1.DrawAnsweringMachineDialogue(characterFromName, "Strings\\Characters:ESPN.Phone_Traveler_NM");
                     Game1.afterDialogues = (Game1.afterFadeFunction)Delegate.Combine(Game1.afterDialogues, (Game1.afterFadeFunction)delegate
@@ -106,7 +106,7 @@ namespace ExtraShopPhoneNumbers.ExtraShopPhoneNumbers
                         }
                     });
                 }
-                if (Game1.dayOfMonth is 15 or 16 or 17 && Game1.season is Season.Spring) //Desert Festival?
+                else if (Game1.dayOfMonth is 15 or 16 or 17 && Game1.season is Season.Spring) //Desert Festival?
                 {
                     Game1.DrawAnsweringMachineDialogue(characterFromName, "Strings\\Characters:ESPN.Phone_Traveler_DF");
                     Game1.afterDialogues = (Game1.afterFadeFunction)Delegate.Combine(Game1.afterDialogues, (Game1.afterFadeFunction)delegate
@@ -175,6 +175,11 @@ namespace ExtraShopPhoneNumbers.ExtraShopPhoneNumbers
                 {
                     Game1.DrawAnsweringMachineDialogue(characterFromName, "Strings\\Characters:ESPN.Phone_Traveler_too_late");
                 }
+                else
+                {
+                    //Should never happen.
+                    Game1.DrawAnsweringMachineDialogue(characterFromName, "If you're reading this, something went wrong with ESPN. Take a screenshot of your time and day and contact PrincessFelicie on NexusMods.");
+                }
 
             }, 4950);
         }
@@ -188,7 +193,7 @@ namespace ExtraShopPhoneNumbers.ExtraShopPhoneNumbers
             {
                 Game1.playSound("bigSelect");
                 NPC characterFromName = Game1.getCharacterFromName("Krobus");
-                if (Game1.dayOfMonth == 5 || Game1.dayOfMonth == 12 || Game1.dayOfMonth == 19 || Game1.dayOfMonth == 26 ) //Friday?
+                if (Game1.dayOfMonth % 7 == 5) //Friday?
                 {
                     NPC Krobusrobocall = new NPC(new AnimatedSprite("Characters\\Abigail", 0, 16, 16), Vector2.Zero, "", 0, Game1.content.LoadString("Strings\\Characters:ESPN.Krobus_Friday"), Game1.temporaryContent.Load<Texture2D>("Portraits\\AnsweringMachine"), eventActor: false);
                     Game1.DrawAnsweringMachineDialogue(Krobusrobocall, "Strings\\Characters:ESPN.Phone_Krobus_Friday");
@@ -236,15 +241,15 @@ namespace ExtraShopPhoneNumbers.ExtraShopPhoneNumbers
             {
                 Game1.playSound("bigSelect");
                 NPC characterFromName = Game1.getCharacterFromName("Sandy");
-                if (Game1.dayOfMonth is 15 or 16 or 17 && Game1.season == Season.Spring) //Desert Festival? Can't check shop.
+                if ((Game1.dayOfMonth is 15 or 16 or 17) && Game1.season == Season.Spring) //Desert Festival? Can't check shop.
                 {
                     Game1.DrawAnsweringMachineDialogue(characterFromName, "Strings\\Characters:ESPN.Phone_Sandy_DF");
                 }
-                if (Game1.timeOfDay > 2350) //too late? Can't check shop.
+                else if (Game1.timeOfDay > 2350) //too late? Can't check shop.
                 {
                     Game1.DrawAnsweringMachineDialogue(characterFromName, "Strings\\Characters:ESPN.Phone_Sandy_toolate");
                 }
-                if (Game1.timeOfDay < 900) //too early? Can still check shop.
+                else if (Game1.timeOfDay < 900) //too early? Can still check shop.
                 {
                     Game1.DrawAnsweringMachineDialogue(characterFromName, "Strings\\Characters:ESPN.Phone_Sandy_tooearly");
                     Game1.afterDialogues = (Game1.afterFadeFunction)Delegate.Combine(Game1.afterDialogues, (Game1.afterFadeFunction)delegate
